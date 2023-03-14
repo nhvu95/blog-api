@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model comment {
+  slug      String
+  id        Int      @default(autoincrement())
+  content   String
+  liked     Int?     @default(0)
+  disliked  Int?     @default(0)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  @@id([slug, id])
+}
+
+model post {
+  slug    String @id
+  liked   Int    @default(0)
+  read    Int?   @default(0)
+  comment Int?   @default(0)
+}
