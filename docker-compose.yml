@@ -1,0 +1,12 @@
+version: '3.8'
+name: blog-backend
+services:
+    blog-backend: 
+        image: blog-backend:latest
+        restart: unless-stopped
+        ports:
+            - '4000:3000'
+networks:
+    default:
+      name: tunnel
+      external: true
